@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dataread import views
-from dataread.views import RegisterView, LoginView,UserDetailView
+from dataread.views import RegisterView, LoginView, UserDetailView, Project_Create, Project_Del, Project_Get, \
+    GetAllCompetitions
 from rest_framework.views import APIView
 
 
@@ -25,6 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload_csv/', views.upload_csv, name='upload_csv'),
     path('register/', RegisterView.as_view(), name='register'),
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/',LoginView.as_view(), name='login'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user_detail'),
+    path('create_project/', Project_Create.as_view(), name='create_project'),
+    path('get_competitions_by_field/', Project_Get.as_view(), name='get_competitions_by_field'),
+    path('get_all_competitions/', GetAllCompetitions.as_view(), name='get_all_competitions'),
+    path('delete_competition/',Project_Del.as_view(), name='delete_competition'),
 ]
